@@ -12,3 +12,10 @@ movies_post:
     defaults:
         _controller: AppBundle\Controller\MoviesController:postMoviesAction
         _format: json
+
+movies_put:
+    path: /movies
+    methods: [PUT]
+    defaults:
+        _controller: AppBundle\Controller\MoviesController:putMoviesAction
+        _format: json

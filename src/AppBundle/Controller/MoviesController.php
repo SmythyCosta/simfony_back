@@ -41,6 +41,27 @@ class MoviesController extends AbstractController
     }
 
     /**
+     * @Rest\View(statusCode=201)
+     * @ParamConverter("movie", converter="fos_rest.request_body")
+     * @Rest\NoRoute()
+     */
+    public function putMoviesAction(Movie $movie)
+    {
+
+        $obj = $this->getDoctrine()
+                        ->getRepository('AppBundle:Movie')
+                        ->find($movie->getId());
+        
+        if (null == $obj) {
+            return $this->view(null, 404);
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $em->merge($movie);
+        $em->flush();
+    }
+
+    /**
      * @Rest\View()
      */
     public function deleteMoviesAction($movieId)
