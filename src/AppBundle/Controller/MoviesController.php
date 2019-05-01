@@ -7,6 +7,8 @@ use FOS\RestBundle\Controller\ControllerTrait;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use FOS\RestBundle\Controller\Annotations as Rest;
+use AppBundle\Exception\ValidationException;
+use Symfony\Component\Validator\ConstraintViolationListInterface;
 
 
 class MoviesController extends AbstractController
@@ -45,6 +47,7 @@ class MoviesController extends AbstractController
      */
     public function postMoviesAction(Movie $movie)
     {
+
         $em = $this->getDoctrine()->getManager();
         $em->persist($movie);
         $em->flush();
