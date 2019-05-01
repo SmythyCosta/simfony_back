@@ -59,5 +59,16 @@ class MoviesController extends AbstractController
 
     }
 
+    /**
+     * @Rest\View()
+     */
+    public function getMovieAction(?Movie $movie)
+    {
+        if (null == $movie) {
+            return $this->view(null, 404);
+        }
+
+        return $movie;
+    }
 
 }
