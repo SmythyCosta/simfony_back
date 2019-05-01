@@ -27,7 +27,19 @@ class MoviesController extends AbstractController
     }
 
     /**
-     * @Rest\View(statusCode=201)
+     * @Rest\View()
+     */
+    public function getMovieAction(?Movie $movie)
+    {
+        if (null == $movie) {
+            return $this->view(null, 404);
+        }
+
+        return $movie;
+    }
+
+    /**
+     * @Rest\View(statusCode=200)
      * @ParamConverter("movie", converter="fos_rest.request_body")
      * @Rest\NoRoute()
      */
@@ -41,7 +53,7 @@ class MoviesController extends AbstractController
     }
 
     /**
-     * @Rest\View(statusCode=201)
+     * @Rest\View(statusCode=200)
      * @ParamConverter("movie", converter="fos_rest.request_body")
      * @Rest\NoRoute()
      */
@@ -62,7 +74,7 @@ class MoviesController extends AbstractController
     }
 
     /**
-     * @Rest\View()
+     * @Rest\View(statusCode=200)
      */
     public function deleteMoviesAction($movieId)
     {
@@ -80,16 +92,6 @@ class MoviesController extends AbstractController
 
     }
 
-    /**
-     * @Rest\View()
-     */
-    public function getMovieAction(?Movie $movie)
-    {
-        if (null == $movie) {
-            return $this->view(null, 404);
-        }
 
-        return $movie;
-    }
 
 }
